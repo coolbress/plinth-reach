@@ -27,11 +27,8 @@ FORBIDDEN_PART = ("__pycache__/", ".mypy_cache/", ".pytest_cache/", ".ruff_cache
 
 def tracked() -> list[str]:
     """The tracked files, from git rather than the file system."""
-    # The arguments are literals, so only S607 (partial path) applies, and an
-    # absolute path would be worse: git lives in different places on CI and on
-    # a laptop.
     done = subprocess.run(
-        ["git", "ls-files"],  # noqa: S607
+        ["git", "ls-files"],
         capture_output=True,
         text=True,
         check=False,

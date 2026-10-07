@@ -33,11 +33,7 @@ line-length = 100
 src = ["src", "tests"]
 
 [tool.ruff.lint]
-select = ["E", "F", "W", "I", "N", "UP", "B", "S", "A", "C4", "PT", "SIM", "RUF"]
-
-[tool.ruff.lint.per-file-ignores]
-# assert is the normal form in tests
-"tests/**" = ["S101"]
+select = ["E", "F", "W", "I", "N", "UP", "B", "A", "C4", "PT", "SIM", "RUF"]
 
 # Type checking, `ci / typecheck`.
 [tool.mypy]
