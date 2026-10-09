@@ -34,7 +34,7 @@ permissions:
 
 jobs:
   ci:
-    uses: coolbress/plinth/.github/workflows/python-ci.yml@e52e750c6520ba013b2473c4e5e6157fc77fedb6
+    uses: coolbress/plinth/.github/workflows/python-ci.yml@ea68d81c570c51299d24936b952e3c8b1fe83bbd
     with:
       # pyproject declares `requires-python = ">=3.12"`; testing one version
       # claims support that was never exercised. Not a matrix: a matrix would
@@ -70,7 +70,7 @@ jobs:
 #     cancel-in-progress: false
 #   jobs:
 #     third-party:
-#       uses: coolbress/plinth/.github/workflows/pr-review.yml@e52e750c6520ba013b2473c4e5e6157fc77fedb6
+#       uses: coolbress/plinth/.github/workflows/pr-review.yml@ea68d81c570c51299d24936b952e3c8b1fe83bbd
 #       with:
 #         reviewer-logins: "chatgpt-codex-connector[bot]"   # whose signal counts
 #         ask-comment: "@codex review"                       # posted to summon it; empty never summons
