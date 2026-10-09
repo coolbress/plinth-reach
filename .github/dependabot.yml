@@ -27,6 +27,11 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    # Temporary (plinth #447): no cooldown on the plinth workflow pins, so
+    # the first grouped move of ci.yml and label.yml can be observed on
+    # the day plinth v1.9.0 was tagged. Reverted once observed.
+    cooldown:
+      exclude: ["coolbress/plinth/*"]
     groups:
       actions:
         patterns: ["*"]
