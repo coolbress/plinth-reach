@@ -8,6 +8,6 @@ _src_path: gh:coolbress/plinth-template
 archetype: cli
 license: MIT
 owner: coolbress
-plinth_sha: cd72a228805c4e311c77ddef267b96c8a9033a62
+plinth_sha: 3039c32493e165796f37f76bd50ffe0ced920b05
 project_name: plinth-reach
 
