@@ -34,7 +34,7 @@ permissions:
 
 jobs:
   ci:
-    uses: coolbress/plinth/.github/workflows/python-ci.yml@cd72a228805c4e311c77ddef267b96c8a9033a62
+    uses: coolbress/plinth/.github/workflows/python-ci.yml@3039c32493e165796f37f76bd50ffe0ced920b05
     with:
       # pyproject declares `requires-python = ">=3.12"`; testing one version
       # claims support that was never exercised. Not a matrix: a matrix would
@@ -53,7 +53,9 @@ jobs:
 # reviewer account (the default is the Codex code reviewer, a ChatGPT
 # subscription). It is a separate workflow because it listens to review events
 # and must not be cancelled by a new push. To turn it on, put the lines below,
-# uncommented, in `.github/workflows/third-party.yml`; the how-to:
+# uncommented, in `.github/workflows/third-party.yml`, and set its `uses:`
+# ref to the full commit SHA the `ci` job above calls: the `<...>` placeholder
+# is not a ref, and GitHub refuses the workflow until it is replaced. The how-to:
 # https://github.com/coolbress/plinth/blob/main/docs/how-to/configure-the-third-party-reviewer.md
 #
 #   name: third-party
@@ -70,7 +72,10 @@ jobs:
 #     cancel-in-progress: false
 #   jobs:
 #     third-party:
-#       uses: coolbress/plinth/.github/workflows/pr-review.yml@ea68d81c570c51299d24936b952e3c8b1fe83bbd
+#       # The same full commit SHA the ci job above calls: copy it here when
+#       # enabling this job. It is not rendered, so a template update never
+#       # conflicts on this comment (plinth #463).
+#       uses: coolbress/plinth/.github/workflows/pr-review.yml@<the full commit SHA the ci job calls>
 #       with:
 #         reviewer-logins: "chatgpt-codex-connector[bot]"   # whose signal counts
 #         ask-comment: "@codex review"                       # posted to summon it; empty never summons
