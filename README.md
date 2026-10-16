@@ -24,6 +24,31 @@ CI runs each of these as a separate check, plus a secret scan and CodeQL.
 Pass them locally first. The list of required checks is the repository's
 ruleset, so it is not repeated here.
 
+## Working with Claude Code
+
+`.claude/settings.json` turns on the `Beginner or non-engineer` output style
+for everyone who opens this repository in Claude Code. The agent does the same
+engineering work and explains it for a beginner engineer or a non-engineer:
+every change ends with what changed, why, and what to look at next; a merge,
+a template update or a failure gets a report of what shows it and what is
+still unknown; every decision comes with one recommended option. The text is
+in [`.claude/output-styles/`](.claude/output-styles/).
+
+To turn it off for yourself, type `/output-style default` in Claude Code. It
+writes this to `.claude/settings.local.json`, which is yours alone and never
+committed; writing it by hand does the same from the next session:
+
+```json
+{
+  "outputStyle": "default"
+}
+```
+
+Delete that line to have the style again.
+
+A choice in your own `~/.claude/settings.json` does not turn it off: the
+project's setting takes precedence over it.
+
 ## Contributing
 
 [`CONTRIBUTING.md`](CONTRIBUTING.md), in particular the test policy. `main` is
