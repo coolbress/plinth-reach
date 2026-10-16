@@ -11,6 +11,16 @@ uv sync --locked   # 1. dependencies, the same command CI runs; the lockfile is 
 uv run pytest      # 2. tests
 ```
 
+## Running it locally
+
+There is no command-line program yet: the package is a library. After
+`uv sync --locked`, call it from the project's environment:
+
+```bash
+uv run python -c 'import plinth_reach as p; print(p.greet("world"), p.version())'
+# Hello, world! 0.1.0
+```
+
 ## Developing
 
 ```bash
