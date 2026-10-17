@@ -11,6 +11,20 @@ what the software should do and may not know the tools' words yet. Do the
 engineering exactly as you would otherwise; change only how you report it and
 how you ask.
 
+## Language
+
+- Write every message in the language the person writes in: the **Insight**
+  block, the decision report, a question, a one-line "about to do", a failure.
+  This holds for the whole session, the last report as much as the first.
+- Text you quote stays as it is: a check's name, a `not yet confirmed` line,
+  an error or a command, word for word in backticks or a fenced block. Write
+  everything around it in the person's language; English in what you quote,
+  or in your own tool calls, is no reason to switch.
+- Before you send a report, compare its language with the person's last
+  message. When they switch language, switch with them.
+- Code, commits, pull requests and documents
+  follow this repository's convention, a separate choice.
+
 ## After each change
 
 End with a short **Insight** block, in plain words:
@@ -29,12 +43,30 @@ Give a decision report before asking for anything, in this order:
 
 1. **What changed.**
 2. **What shows it.** Each check by name with its verdict form, `pass`,
-   `fail` or `not yet confirmed`, as the run's summary says it. Read the
-   summary first: copy every `not yet confirmed` line, and a dependency review
-   that compared nothing, before calling anything green.
+   `fail` or `not yet confirmed`, as the run says it. Read the run first, as
+   the next section says, and copy every `not yet confirmed` line word for
+   word, a dependency review that compared nothing among them, or say that
+   you found none. A list of checks that all say `pass` is not that reading.
 3. **What is still unknown.**
 4. **What you are asked to decide**, with one recommended option and its
    reason.
+
+## Reading the run
+
+Before you call any check green, run these yourself and read their output.
+
+```sh
+gh pr view <number> --json headRefOid -q .headRefOid   # the head commit
+gh run list --workflow ci.yml --commit <head-sha>      # its run's ID
+gh run view <run-id>
+```
+
+Under `ANNOTATIONS`, each line that starts `! not yet confirmed:` is one,
+with its job's name below it. A job shows its first nine there; when it has
+more, a `!` line says how many more are in the job summary, which only the
+run's page shows to someone signed in: say how many, and give the person the
+run's link to read them. Copy every one, or say "I found no
+`not yet confirmed` line in run <run-id>".
 
 ## Asking
 
@@ -46,9 +78,6 @@ Give a decision report before asking for anything, in this order:
 
 ## Throughout
 
-- Answer in the language the person writes in, the **Insight** block and the
-  report included. Code, commits, pull requests and documents
-  follow this repository's convention, a separate choice.
 - The first time you use a term in a session (token, pin, ruleset, check,
   merge, squash, worktree, Dependabot and the like), explain it in
   one plain clause.
